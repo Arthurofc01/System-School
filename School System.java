@@ -1,106 +1,59 @@
 import java.util.Scanner;
-
-
-// Classe Usuario
-
-public class Registo {
-    String nometd;
-    String cpf;
-    String contatodoresponsavel;
-    String idade;
-
-    Registo(String nometd, String cpf, String contatodoresponsavel, String idade){
-        this.nometd = nometd;
-        this.cpf = cpf;
-        this.contatodoresponsavel = contatodoresponsavel;
-        this.idade = idade;
-}
-
-void mostrarUsuario() {
-        System.out.println("--------------------------------------------");
-        System.out.println("--------- Registro feito com exito ---------");
-        System.out.println("--------------------------------------------");
-        System.out.println("noome: " + this.nometd);
-        System.out.println("idade: " + this.idade);
-        System.out.println("noome: " + this.contatodoresponsavel);
-        System.out.println("idade: " + this.cpf);
-    }
+import java.util.ArrayList;
 
 class Usuario {
-    String user;
+    String nome;
     String senha;
+    String email;
+    int cpf;
 
-    // Construtor
-    Usuario(String user, String senha) {
-        this.user = user;
+    Usuario(int cpf, String nome, String senha, String email){
+        this.cpf = cpf;
         this.senha = senha;
+        this.email = email;
+        this.nome = nome;
     }
 
-    
-
-    // Mostrar informações do usuário
     void mostrarUsuario() {
         System.out.println("--------------------------------------------");
         System.out.println("------ Cadastro realizado com sucesso ------");
         System.out.println("--------------------------------------------");
-        System.out.println("Usuário: " + this.user);
+        System.out.println("Nome: " + this.nome);
         System.out.println("Senha: " + this.senha);
-    }
+        System.out.println("Email: " + this.email);
+        System.out.println("Cpf: " + this.cpf);
 
-    // Validar login
-    boolean validarLogin(String userLogin, String senhaLogin) {
-        return (this.user.equals(userLogin) && this.senha.equals(senhaLogin));
-    }
-
-    // Getters e Setters
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 }
 
-// Classe principal
-public class App {
-    public static void main(String[] args) throws Exception {
+
+public class teste {
+    public static void main(String[] args) throws Exception  {
         Scanner sc = new Scanner(System.in);
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-         System.out.print("Tem Login?: ");
+        System.out.println("Bem vindo ao Sistema da escola");
+        System.out.println("");
+        System.out.println("Escreva seu nome completo");
+        String nome = sc.next();
+        System.out.println("Nome registrado!");
+        System.out.println("Escreva seu Email");
+        String email = sc.next();
+        System.out.println("Email registrado");
+        System.out.println("Seu cpf");
+        int cpf = sc.nextInt();
+        System.out.println("Cpf registrado");
+        System.out.println("Registre sua nova senha");
+        String senha = sc.next();
+        System.out.println("Senha registrada");
+        
+        Usuario usuario = new Usuario (nome , cpf , email , senha);
+        listaUsuarios.add(usuario);
 
-        System.out.print("Digite o nome de usuário: ");
-        String nome = sc.nextLine();
-
-        System.out.print("Digite a senha: ");
-        String senha = sc.nextLine();
-
-        Usuario novoUsuario = new Usuario(nome, senha);
-        novoUsuario.mostrarUsuario();
-
-        System.out.print("\n\n=== Login ===\n");
-        System.out.print("Usuário: ");
-        String login = sc.nextLine();
-
-        System.out.print("Senha: ");
-        String loginSenha = sc.nextLine();
-
-        if (novoUsuario.validarLogin(login, loginSenha)) {
-            System.out.println("Login realizado com sucesso!");
-        } else {
-            System.out.println("Usuário ou senha incorretos.");
+        System.out.println("mostrar lista de usuarios");
+        for (Usuario usuario : listaUsuarios) {
+            usuario.mostrarUsuario();
         }
 
-        sc.close();
     }
-}
-
 }
